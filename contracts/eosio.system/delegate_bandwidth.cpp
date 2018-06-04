@@ -385,7 +385,7 @@ namespace eosiosystem {
       eosio_assert( req != refunds_tbl.end(), "refund request not found" );
       std::string msg = " refund is not available yet ";
       msg = std::to_string(req->request_time + refund_delay) + msg + std::to_string(now());
-      eosio_assert( req->request_time + refund_delay <= now(), msg );
+      eosio_assert( req->request_time + refund_delay <= now(), msg.c_str() );
       // Until now() becomes NOW, the fact that now() is the timestamp of the previous block could in theory
       // allow people to get their tokens earlier than the 3 day delay if the unstake happened immediately after many
       // consecutive missed blocks.
