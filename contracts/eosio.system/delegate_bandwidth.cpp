@@ -28,7 +28,7 @@ namespace eosiosystem {
    using std::map;
    using std::pair;
 
-   static constexpr time refund_delay = 60*15; // change unstake refund deplay to 15 mins for test
+   static constexpr time refund_delay = 60*5; // change unstake refund deplay to 5 mins for test
    static constexpr time refund_expiration_time = 3600;
 
    struct user_resources {
@@ -383,7 +383,9 @@ namespace eosiosystem {
       refunds_table refunds_tbl( _self, owner );
       auto req = refunds_tbl.find( owner );
       eosio_assert( req != refunds_tbl.end(), "refund request not found" );
-      eosio_assert( req->request_time + refund_delay <= now(), "refund is not available yet" );
+      std::string msg = "refund is not available yet";
+      msg = std::to_string(req->request_time + refund_delay) + msg + std::to_string(now())
+      eosio_assert( req->request_time + refund_delay <= now(), msg );
       // Until now() becomes NOW, the fact that now() is the timestamp of the previous block could in theory
       // allow people to get their tokens earlier than the 3 day delay if the unstake happened immediately after many
       // consecutive missed blocks.
