@@ -23,3 +23,7 @@ RUN chmod +x /opt/eosio/bin/nodeosd.sh
 ENV LD_LIBRARY_PATH /usr/local/lib
 VOLUME /opt/eosio/bin/data-dir
 ENV PATH /opt/eosio/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+RUN groupadd -g 999 eosio && \
+    useradd -r -u 999 -s /bin/bash -g eosio eosio
+USER eosio
