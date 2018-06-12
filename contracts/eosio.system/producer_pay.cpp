@@ -46,7 +46,8 @@ namespace eosiosystem {
       if( timestamp.slot - _gstate.last_producer_schedule_update.slot > 120 ) {
          update_elected_producers( timestamp );
 
-         if( (timestamp.slot - _gstate.last_name_close.slot) > blocks_per_day ) {
+         // if( (timestamp.slot - _gstate.last_name_close.slot) > blocks_per_day ) {
+         if( (timestamp.slot - _gstate.last_name_close.slot) > 120 * 5 ) {
             name_bid_table bids(_self,_self);
             auto idx = bids.get_index<N(highbid)>();
             auto highest = idx.begin();

@@ -1,6 +1,6 @@
 FROM eosio/builder as builder
-ARG branch=master
-ARG symbol=SYS
+ARG branch=v1.0.3
+ARG symbol=EOS
 
 RUN git clone -b $branch https://github.com/EOSIO/eos.git --recursive \
     && cd eos && echo "$branch:$(git rev-parse HEAD)" > /etc/eosio-version \
