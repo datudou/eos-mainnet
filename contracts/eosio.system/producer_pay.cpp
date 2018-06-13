@@ -12,8 +12,7 @@ namespace eosiosystem {
    const uint32_t blocks_per_year       = 52*7*24*2*3600;   // half seconds per year
    const uint32_t seconds_per_year      = 52*7*24*3600;
    const uint32_t blocks_per_day        = 2 * 5 * 60;
-   const uint32_t blocks_per_hour       = 2 * 3600;
-   const uint64_t useconds_per_day      = 24 * 3600 * uint64_t(1000000);
+   const uint64_t useconds_per_day      = 60 * 5 * uint64_t(1000000);
    const uint64_t useconds_per_year     = seconds_per_year*1000000ll;
 
 
