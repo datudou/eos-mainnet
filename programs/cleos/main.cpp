@@ -1502,7 +1502,7 @@ void get_account( const string& accountName, bool json_format ) {
       if( res.refund_request.is_object() ) {
          auto obj = res.refund_request.get_object();
          auto request_time = fc::time_point_sec::from_iso_string( obj["request_time"].as_string() );
-         fc::time_point refund_time = request_time + fc::days(3);
+         fc::time_point refund_time = request_time + fc::seconds(60);
          auto now = res.head_block_time;
          std::cout << std::fixed << setprecision(3);
          std::cout << "unstaking tokens:" << std::endl;
