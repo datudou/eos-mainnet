@@ -27,8 +27,8 @@ namespace eosiosystem {
    using eosio::permission_level;
    using std::map;
    using std::pair;
-
-   static constexpr time refund_delay = 3*24*3600;
+   // unstake in 5 mins
+   static constexpr time refund_delay = 60*5;
    static constexpr time refund_expiration_time = 3600;
 
    struct user_resources {
