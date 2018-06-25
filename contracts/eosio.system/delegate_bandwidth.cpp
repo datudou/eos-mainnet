@@ -298,10 +298,8 @@ namespace eosiosystem {
             if ( req->net_amount == asset(0) && req->cpu_amount == asset(0) ) {
                refunds_tbl.erase( req );
                need_deferred_trx = false;
-               cout << "#301";
             } else {
                need_deferred_trx = true;
-               cout << "#304";
             }
          } else if ( net_balance < asset(0) || cpu_balance < asset(0) ) { //need to create refund
             refunds_tbl.emplace( from, [&]( refund_request& r ) {
@@ -317,7 +315,6 @@ namespace eosiosystem {
                   r.request_time = now();
                });
             need_deferred_trx = true;
-            cout << "#320";
          } // else stake increase requested with no existing row in refunds_tbl -> nothing to do with refunds_tbl
 
          if ( need_deferred_trx ) {
@@ -326,15 +323,12 @@ namespace eosiosystem {
             out.delay_sec = refund_delay;
             cancel_deferred( from ); // TODO: Remove this line when replacing deferred trxs is fixed
             out.send( from, from, true );
-            cout << "#329";
          } else {
             cancel_deferred( from );
-            cout << "#332";
          }
 
          auto transfer_amount = net_balance + cpu_balance;
          if ( asset(0) < transfer_amount ) {
-            cout << "#337";
             INLINE_ACTION_SENDER(eosio::token, transfer)( N(eosio.token), {source_stake_from, N(active)},
                { source_stake_from, N(eosio.stake), asset(transfer_amount), std::string("stake bandwidth") } );
          }

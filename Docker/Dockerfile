@@ -1,5 +1,5 @@
 FROM eosio/builder as builder
-ARG branch=test/mainnet-1.0.6-unstake-in-5mins
+ARG branch=test/mainnet-1.0.6-unstake-in-1min
 ARG symbol=EOS
 
 RUN git clone -b $branch https://github.com/eoslaomao/eos.git --recursive \
